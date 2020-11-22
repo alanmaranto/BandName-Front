@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const BandList = ({ bands: data, toVote, deleteBand }) => {
+const BandList = ({ bands: data, toVote, deleteBand, changeBandName }) => {
   const [bands, setBands] = useState(data);
 
   useEffect(() => {
@@ -19,7 +19,10 @@ const BandList = ({ bands: data, toVote, deleteBand }) => {
     );
   };
 
-  const onBlur = (id, name) => {};
+  const onBlur = (id, name) => {
+    console.log('holi')
+    changeBandName(id,name)
+  };
 
   const renderTableRows = () => {
     return bands.map((band) => (
