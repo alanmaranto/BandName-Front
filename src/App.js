@@ -14,30 +14,35 @@ const connectSocketServer = () => {
 function App() {
   const [online, setOnline] = useState(false);
   const [socket] = useState(connectSocketServer());
-  const [bands, setBands] = useState([])
+  const [bands, setBands] = useState([]);
 
   useEffect(() => {
     setOnline(socket.connected);
   }, [socket]);
 
   useEffect(() => {
-    socket.on('connect', () => {
-      setOnline(true)
-    })
-  }, [ socket])
+    socket.on("connect", () => {
+      setOnline(true);
+    });
+  }, [socket]);
 
   useEffect(() => {
-    socket.on('disconnect', () => {
-      setOnline(false)
-    })
-  }, [ socket])
+    socket.on("disconnect", () => {
+      setOnline(false);
+    });
+  }, [socket]);
 
   useEffect(() => {
-    socket.on('current-bands', (bands) => {
-      console.log(bands)
-      setBands(bands)
-    })
-  })
+    socket.on("current-bands", (bands) => {
+      console.log(bands);
+      setBands(bands);
+    });
+  });
+
+  const toVote = (id) => {
+    console.log('id', id)
+    socket.emit("vote-band", id);
+  };
 
   return (
     <div className="container">
@@ -57,9 +62,7 @@ function App() {
 
       <div className="row">
         <div className="col-8">
-          <BandList 
-            bands={bands}
-          />
+          <BandList bands={bands} toVote={toVote} />
         </div>
         <div className="col-4">
           <AddBand />

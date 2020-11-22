@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const BandList = ({ bands: data }) => {
+const BandList = ({ bands: data, toVote }) => {
   const [bands, setBands] = useState(data);
 
   useEffect(() => {
@@ -19,20 +19,22 @@ const BandList = ({ bands: data }) => {
     );
   };
 
-  const onUnFocus = (id, name) => {};
+  const onBlur = (id, name) => {};
 
   const renderTableRows = () => {
     return bands.map((band) => (
       <tr key={band.id}>
         <td>
-          <button className="btn btn-primary">+1</button>
+          <button className="btn btn-primary" onClick={() => toVote(band.id)}>
+            +1
+          </button>
         </td>
         <td>
           <input
             className="form-control"
             value={band.name}
             onChange={(e) => onChangeName(e, band.id)}
-            onBlur={() => onUnFocus(band.id, band.name)}
+            onBlur={() => onBlur(band.id, band.name)}
           />
         </td>
         <td>
