@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import { useSocket } from "../hooks/useSocket";
 
-const AddBand = ({ addBand }) => {
+const AddBand = () => {
   const [band, setBand] = useState("");
+  const { socket } = useSocket("http://localhost:8080");
+
+  const addBand = (band) => {
+    socket.emit("add-band", { band });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (band.trim().length > 0) {
