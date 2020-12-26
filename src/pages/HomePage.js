@@ -4,30 +4,7 @@ import BandList from "../components/BandList";
 import { SocketContext } from "../context/SocketContext";
 
 function HomePage() {
-  // const [bands, setBands] = useState([]);
-
-  const { online } = useContext(SocketContext)
-
-/*   useEffect(() => {
-    socket.on("current-bands", (bands) => {
-      setBands(bands);
-    });
-  }); */
-
-/*   const toVote = (id) => {
-    console.log("id", id);
-    socket.emit("vote-band", id);
-  };
-
-  const deleteBand = (id) => {
-    socket.emit("delete-band", id);
-  };
-
-  const changeBandName = (id, name) => {
-    socket.emit("change-name", { id, name });
-  }; */
-
-
+  const { online } = useContext(SocketContext);
 
   return (
     <div className="container">
@@ -47,15 +24,10 @@ function HomePage() {
 
       <div className="row">
         <div className="col-8">
-{/*           <BandList
-            bands={bands}
-            toVote={toVote}
-            deleteBand={deleteBand}
-            changeBandName={changeBandName}
-          /> */}
+          <BandList />
         </div>
         <div className="col-4">
-          {/* <AddBand /> */}
+          <AddBand />
         </div>
       </div>
     </div>
