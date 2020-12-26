@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useSocket } from "../hooks/useSocket";
+import React, { useState, useContext } from "react";
+import { SocketContext } from "../context/SocketContext";
 
 const AddBand = () => {
   const [band, setBand] = useState("");
-  const { socket } = useSocket("http://localhost:8080");
+  const { socket } = useContext(SocketContext);
 
   const addBand = (band) => {
     socket.emit("add-band", { band });
