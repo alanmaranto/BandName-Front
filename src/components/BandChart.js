@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from "react";
 import { SocketContext } from "../context/SocketContext";
 import { graphConfig } from "./graphConfig";
